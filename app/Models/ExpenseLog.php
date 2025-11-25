@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ExpenseLog extends Model
 {
     use HasFactory;
+    
+    // Désactiver updated_at car la table n'a que created_at
+    const UPDATED_AT = null;
+    
     protected $fillable = [
         'expense_id', 'user_id', 'from_status', 'to_status',
     ];

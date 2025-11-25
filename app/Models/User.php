@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,4 +43,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function isManager()
+    {
+        return $this->role === 'MANAGER';
+    }
+
+    public function isEmployee()
+    {
+        return $this->role === 'EMPLOYEE';
+    }
+
+    /**
+     * Relation : un utilisateur a plusieurs dépenses
+     */
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
 }
